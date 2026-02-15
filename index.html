@@ -1,284 +1,271 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Julieta & Brayan 💖</title>
+<title>Nuestro Universo 💖</title>
 
 <style>
 body{
-  margin:0;
-  padding:0;
-  background: linear-gradient(to bottom, #0b0c2a, #1a1c47);
-  color:white;
-  font-family:'Courier New', cursive;
-  text-align:center;
-  overflow-x:hidden;
-  transition:1s;
+    margin:0;
+    overflow-x:hidden;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to bottom,#140014,#2b001f,#000);
+    color:white;
+    text-align:center;
 }
 
-/* MODO SECRETO FONDO */
-.modo-secreto{
-  background: linear-gradient(to bottom, #2b1055, #7597de);
+/* 🌌 ESTRELLAS */
+.estrella{
+    position:fixed;
+    width:2px;
+    height:2px;
+    background:white;
+    border-radius:50%;
+    opacity:0.8;
+    animation:parpadeo 2s infinite alternate;
+}
+@keyframes parpadeo{
+    from{opacity:0.3;}
+    to{opacity:1;}
 }
 
-/* ESTRELLAS */
-.star{
-  position:absolute;
-  width:2px;
-  height:2px;
-  background:white;
-  animation:twinkle 2s infinite alternate;
+/* 🌠 ESTRELLA FUGAZ */
+.estrella-fugaz{
+    position:fixed;
+    width:3px;
+    height:3px;
+    background:white;
+    border-radius:50%;
+    box-shadow:0 0 10px white,0 0 20px white;
+    pointer-events:none;
+    z-index:9999;
+    animation:caer 1.5s linear forwards;
 }
-@keyframes twinkle{
-  0%{opacity:0.2;}
-  100%{opacity:1;}
-}
-
-/* CORAZÓN */
-#corazon{
-  position:fixed;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  font-size:80px;
-  color:red;
-  cursor:pointer;
-  z-index:999;
-  animation:expand 1.5s forwards;
-}
-@keyframes expand{
-  0%{transform:translate(-50%,-50%) scale(0);}
-  100%{transform:translate(-50%,-50%) scale(1);}
+@keyframes caer{
+    from{transform:translate(0,0);opacity:1;}
+    to{transform:translate(600px,600px);opacity:0;}
 }
 
-/* CONTADOR */
-#contador{
-  font-size:22px;
-  margin-top:15px;
+/* 🌙 LUNA */
+.luna{
+    position:fixed;
+    top:20px;
+    right:20px;
+    font-size:40px;
+    cursor:pointer;
+    text-shadow:0 0 20px #fff;
 }
 
-/* GALERIA */
-.galeria{
-  display:flex;
-  overflow-x:auto;
-  gap:10px;
-  padding:10px;
-  margin:30px 0;
-}
-.galeria img{
-  height:280px;
-  border-radius:15px;
-  flex-shrink:0;
-  object-fit:cover;
-  box-shadow:0 0 15px rgba(255,192,203,0.6);
+.mensaje-luna{
+    position:fixed;
+    top:80px;
+    right:20px;
+    background:rgba(255,255,255,0.1);
+    padding:15px;
+    border-radius:15px;
+    backdrop-filter:blur(10px);
+    display:none;
+    width:200px;
 }
 
-/* CARTA HISTORIA */
-#btnHistoria{
-  margin-top:20px;
-  font-size:25px;
-  background:none;
-  border:none;
-  cursor:pointer;
-  color:pink;
+/* ❤️ CORAZÓN */
+.corazon{
+    font-size:50px;
+    cursor:pointer;
+    margin-top:20px;
+    animation:latido 1.5s infinite;
 }
-#historiaBox{
-  display:none;
-  position:fixed;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  background:#111;
-  padding:25px;
-  border-radius:15px;
-  width:80%;
-  max-width:400px;
-  box-shadow:0 0 20px pink;
-  z-index:1000;
+@keyframes latido{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.1);}
+    100%{transform:scale(1);}
 }
 
-/* MODO SECRETO */
-#modoBtn{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  background:black;
-  color:white;
-  border:none;
-  padding:8px 12px;
-  cursor:pointer;
-  border-radius:10px;
+/* 📸 CARRUSEL */
+.carrusel-container{
+    width:90%;
+    margin:40px auto;
+    overflow:hidden;
 }
-#secretBox{
-  display:none;
-  position:fixed;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  background:#000;
-  padding:20px;
-  border-radius:15px;
-  box-shadow:0 0 20px hotpink;
-  z-index:2000;
-  width:80%;
-  max-width:350px;
+.carrusel{
+    display:flex;
+    transition:transform 0.8s ease;
 }
-#secretVideo{
-  width:100%;
-  border-radius:15px;
-  margin-top:10px;
-  box-shadow:0 0 20px pink;
+.carrusel img{
+    width:70%;
+    margin:0 15px;
+    border-radius:20px;
+    box-shadow:0 0 25px rgba(255,0,150,0.5);
 }
 
+/* ⏳ CONTADOR */
+.contador-container{
+    display:flex;
+    justify-content:center;
+    margin-top:20px;
+    cursor:pointer;
+}
+.contador{
+    display:flex;
+    gap:20px;
+    padding:20px 30px;
+    border-radius:20px;
+    backdrop-filter:blur(15px);
+    background:rgba(255,255,255,0.08);
+    box-shadow:0 0 25px rgba(255,0,150,0.4);
+    animation:respirar 3s infinite ease-in-out;
+}
+.tiempo span{
+    font-size:28px;
+    font-weight:bold;
+    color:#ff4da6;
+    text-shadow:0 0 10px #ff4da6;
+}
+.tiempo p{
+    font-size:14px;
+    margin:5px 0 0 0;
+}
+@keyframes respirar{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.03);}
+    100%{transform:scale(1);}
+}
+
+/* 💖 TE AMO */
 .teamo{
-  position:fixed;
-  font-size:25px;
-  color:pink;
-  animation:fade 3s forwards;
+    position:fixed;
+    font-size:30px;
+    font-weight:bold;
+    color:#ff4da6;
+    text-shadow:0 0 15px #ff4da6;
+    pointer-events:none;
 }
-@keyframes fade{
-  0%{opacity:0;}
-  50%{opacity:1;}
-  100%{opacity:0;}
-}
-
-.firework{
-  position:absolute;
-  width:6px;
-  height:6px;
-  background:yellow;
-  border-radius:50%;
-  animation:explode 1s forwards;
-}
-@keyframes explode{
-  0%{transform:scale(1);}
-  100%{transform:scale(6);opacity:0;}
+canvas{
+    position:fixed;
+    top:0;
+    left:0;
+    pointer-events:none;
 }
 </style>
 </head>
 
 <body>
 
-<div id="corazon">❤️</div>
-
-<h1>Julieta & Brayan 💖</h1>
-<div id="contador"></div>
-
-<div class="galeria" id="galeria"></div>
-
-<button id="btnHistoria">✉️</button>
-
-<div id="historiaBox">
-<p>
-Desde la primera vez que te vi, aquel 23 de septiembre de 2023, supe que algo en mi vida estaba a punto de cambiar...
-Cada día a tu lado me hace sentir el hombre más afortunado del mundo.
-Y si de algo estoy seguro… es que deseo que nuestra historia dure para siempre. 💖
-</p>
-<button onclick="cerrarHistoria()">Cerrar</button>
+<div class="luna" onclick="toggleMensaje()">🌙</div>
+<div class="mensaje-luna" id="mensajeLuna">
+La luna está celosa porque tú brillas más que ella ✨
 </div>
 
-<button id="modoBtn">🔐</button>
+<h1>Mi Universo Eres Tú 💖</h1>
 
-<div id="secretBox">
-<p id="secretMensaje"></p>
-<video id="secretVideo" src="nuestrovideo.mp4" autoplay muted loop></video>
+<div class="corazon" onclick="reproducirMusica()">❤️</div>
+
+<audio id="musica" src="musica.mp3" loop></audio>
+
+<!-- 📸 GALERÍA -->
+<div class="carrusel-container">
+<div class="carrusel" id="carrusel">
+</div>
 </div>
 
-<audio id="musica" loop>
-<source src="musica.m4a" type="audio/mp4">
-</audio>
+<!-- ⏳ CONTADOR -->
+<div class="contador-container" onclick="lanzarFuegos()">
+<div class="contador">
+<div class="tiempo"><span id="dias">0</span><p>Días</p></div>
+<div class="tiempo"><span id="horas">0</span><p>Horas</p></div>
+<div class="tiempo"><span id="minutos">0</span><p>Min</p></div>
+<div class="tiempo"><span id="segundos">0</span><p>Seg</p></div>
+</div>
+</div>
 
-<audio id="musicaSecreta" loop>
-<source src="labiosrotos.mp3" type="audio/mpeg">
-</audio>
+<canvas id="fuegos"></canvas>
 
 <script>
+/* 🌌 CREAR ESTRELLAS */
+for(let i=0;i<100;i++){
+let estrella=document.createElement("div");
+estrella.className="estrella";
+estrella.style.top=Math.random()*100+"vh";
+estrella.style.left=Math.random()*100+"vw";
+estrella.style.animationDuration=(1+Math.random()*2)+"s";
+document.body.appendChild(estrella);
+}
 
-/* GENERAR 88 FOTOS */
+/* 🌠 ESTRELLA FUGAZ */
+function crearEstrellaFugaz(){
+const estrella=document.createElement("div");
+estrella.className="estrella-fugaz";
+estrella.style.left=Math.random()*window.innerWidth+"px";
+estrella.style.top="0px";
+document.body.appendChild(estrella);
+setTimeout(()=>estrella.remove(),1500);
+}
+setInterval(crearEstrellaFugaz,10000);
+
+/* 🌙 LUNA */
+function toggleMensaje(){
+let mensaje=document.getElementById("mensajeLuna");
+mensaje.style.display=mensaje.style.display==="block"?"none":"block";
+}
+
+/* ❤️ MÚSICA */
+function reproducirMusica(){
+let audio=document.getElementById("musica");
+audio.play();
+}
+
+/* 📸 CARRUSEL */
+const carrusel=document.getElementById("carrusel");
 for(let i=1;i<=88;i++){
-  let img=document.createElement("img");
-  img.src="foto"+i+".jpg";
-  document.getElementById("galeria").appendChild(img);
+let img=document.createElement("img");
+img.src="foto"+i+".jpg";
+carrusel.appendChild(img);
 }
-
-/* CORAZÓN */
-document.getElementById("corazon").onclick=function(){
-  document.getElementById("musica").play();
-  this.style.display="none";
-};
-
-/* HISTORIA */
-document.getElementById("btnHistoria").onclick=function(){
-  document.getElementById("historiaBox").style.display="block";
-};
-function cerrarHistoria(){
-  document.getElementById("historiaBox").style.display="none";
-}
-
-/* CONTADOR */
-let inicio=new Date("2025-02-23T15:30:00");
-let eventoAnual=false;
-
-function actualizar(){
-  let ahora=new Date();
-  let diff=Math.floor((ahora-inicio)/1000);
-
-  let segundos=diff%60;
-  let minutos=Math.floor(diff/60)%60;
-  let horas=Math.floor(diff/3600)%24;
-  let dias=Math.floor(diff/86400);
-
-  document.getElementById("contador").innerHTML=
-  (document.body.classList.contains("modo-secreto")
-  ?"Contando el tiempo hacia nuestro para siempre ♾️<br>"
-  :"")
-  +dias+" días "+horas+" horas "+minutos+" minutos "+segundos+" segundos";
-
-  if(dias>=365 && !eventoAnual){
-    eventoAnual=true;
-    for(let i=0;i<60;i++){
-      setTimeout(()=>{
-        for(let j=0;j<20;j++){
-          let fw=document.createElement("div");
-          fw.className="firework";
-          fw.style.top=Math.random()*100+"%";
-          fw.style.left=Math.random()*100+"%";
-          document.body.appendChild(fw);
-          setTimeout(()=>fw.remove(),1000);
-        }
-      },i*1000);
-    }
-  }
-}
-setInterval(actualizar,1000);
-
-/* MODO SECRETO */
-document.getElementById("modoBtn").onclick=function(){
-  let pass=prompt("Ingresa la contraseña");
-  if(pass==="23022025"){
-    document.body.classList.add("modo-secreto");
-    document.getElementById("musica").pause();
-    document.getElementById("musicaSecreta").play();
-    document.getElementById("secretBox").style.display="block";
-    document.getElementById("secretMensaje").innerHTML=
-    "Este es nuestro universo secreto 💖<br>Solo tú tienes la llave de mi corazón.";
-  }else if(pass!==null){
-    alert("Tú no tienes la llave de mi corazón 🔐❤️");
-  }
-};
-
-/* TE AMO */
+let index=0;
 setInterval(()=>{
-  let t=document.createElement("div");
-  t.className="teamo";
-  t.innerText="Te amo ❤️";
-  t.style.top=Math.random()*90+"%";
-  t.style.left=Math.random()*90+"%";
-  document.body.appendChild(t);
-  setTimeout(()=>t.remove(),3000);
-},8000);
+index++;
+carrusel.style.transform="translateX(-"+(index*75)+"%)";
+if(index>=87){index=0;}
+},1000);
 
+/* ⏳ CONTADOR */
+const fechaInicio=new Date("2025-02-23T00:00:00");
+setInterval(()=>{
+const ahora=new Date();
+const diff=ahora-fechaInicio;
+document.getElementById("dias").textContent=Math.floor(diff/(1000*60*60*24));
+document.getElementById("horas").textContent=Math.floor((diff/(1000*60*60))%24);
+document.getElementById("minutos").textContent=Math.floor((diff/60000)%60);
+document.getElementById("segundos").textContent=Math.floor((diff/1000)%60);
+},1000);
+
+/* 💖 TE AMO */
+setInterval(()=>{
+const texto=document.createElement("div");
+texto.className="teamo";
+texto.textContent="Te amo";
+texto.style.top=Math.random()*90+"vh";
+texto.style.left=Math.random()*90+"vw";
+document.body.appendChild(texto);
+setTimeout(()=>texto.remove(),2000);
+},5000);
+
+/* 🎆 FUEGOS */
+function lanzarFuegos(){
+const canvas=document.getElementById("fuegos");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+for(let i=0;i<100;i++){
+ctx.beginPath();
+ctx.arc(Math.random()*canvas.width,Math.random()*canvas.height,3,0,Math.PI*2);
+ctx.fillStyle="hsl("+Math.random()*360+",100%,50%)";
+ctx.fill();
+}
+setTimeout(()=>ctx.clearRect(0,0,canvas.width,canvas.height),1000);
+}
 </script>
+
 </body>
 </html>
